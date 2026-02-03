@@ -15,7 +15,7 @@ class LockGame {
       this.resizeCelebration();
       window.addEventListener("resize", () => this.resizeCelebration());
 
-      this.globalTimer = 600; // 10 minutes
+      this.globalTimer = 300; // 5 minutes (Increased Urgency)
       this.particles = [];
       this.isVictory = false;
 
@@ -135,15 +135,19 @@ class LockGame {
    }
 
    resetToLevel1() {
-      this.currentLevelIdx = 0;
-      this.globalTimer = 600;
+      // Check for saved checkpoint
+      const savedLevel = localStorage.getItem("m1_level_checkpoint");
+      this.currentLevelIdx = savedLevel ? parseInt(savedLevel) : 0;
+
+      this.globalTimer = 300; // 5 minutes (Synced)
       this.isVictory = false;
       this.lives = 3;
       this.particles = [];
       document.body.classList.remove("critical-failure", "exposed");
       document.getElementById("overlay").classList.remove("active");
       document.getElementById("loot-status").classList.remove("active");
-      this.startLevel(0);
+      this.updateTimerDisplay();
+      this.startLevel(this.currentLevelIdx);
    }
 
    startLevel(idx) {
@@ -382,6 +386,7 @@ class LockGame {
    }
 
    handleSuccess() {
+      if (typeof SFX !== "undefined") SFX.playUnlock();
       document.getElementById(`slot-${this.activeIdx}`).classList.add("cracked");
       this.activeIdx++;
 
@@ -395,6 +400,13 @@ class LockGame {
    }
 
    fail() {
+      if (typeof SFX !== "undefined") {
+         SFX.playFail();
+         SFX.playGlitchSound();
+      }
+      document.body.classList.add("screen-shake");
+      setTimeout(() => document.body.classList.remove("screen-shake"), 400);
+
       this.isPaused = true;
       this.lives--;
       document.getElementById("lives-val").innerText = this.lives;
@@ -409,6 +421,7 @@ class LockGame {
    }
 
    triggerExposedState() {
+      if (typeof SFX !== "undefined") SFX.playAlert(); // Continuous alarm handled in CSS/SFX? Just one trigger here.
       document.body.classList.add("critical-failure", "exposed");
       document.getElementById("lock-state").innerText = "FAILURE";
       document.getElementById("dial-frame").className = "failed";
@@ -430,14 +443,19 @@ class LockGame {
    }
 
    completeLevel() {
+      if (typeof SFX !== "undefined") SFX.playLevelComplete();
       this.isLevelCompelete = true;
       this.isPaused = true;
       document.getElementById("lock-state").innerText = "UNLOCKED";
       document.getElementById("dial-frame").className = "success";
 
       if (this.currentLevelIdx >= this.levels.length - 1) {
+         localStorage.removeItem("m1_level_checkpoint");
          this.triggerCelebration();
       } else {
+         // Save intermediate progress
+         localStorage.setItem("m1_level_checkpoint", this.currentLevelIdx + 1);
+
          setTimeout(() => {
             const modal = document.getElementById("overlay");
             const title = document.getElementById("modal-title");
@@ -453,6 +471,7 @@ class LockGame {
    }
 
    triggerCelebration() {
+      if (typeof SFX !== "undefined") SFX.playMissionComplete();
       this.isVictory = true;
       localStorage.setItem("m1_cleared", "true"); // Persist Mission 1 Completion
       const modal = document.getElementById("overlay");

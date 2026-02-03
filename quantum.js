@@ -15,7 +15,10 @@ class QuantumGhost {
       this.resizeCelebration();
       window.addEventListener("resize", () => this.resizeCelebration());
 
-      this.currentPhase = 1;
+      // Check for saved checkpoint
+      const savedPhase = localStorage.getItem("m2_phase_checkpoint");
+      this.currentPhase = savedPhase ? parseInt(savedPhase) : 1;
+
       this.totalPhases = 5;
       this.isMissionStarted = false;
       this.isPaused = true;
@@ -25,7 +28,7 @@ class QuantumGhost {
       this.initPhase();
 
       this.keys = {};
-      this.timer = 480; // 8 minutes total
+      this.timer = 300; // 5 minutes total (Synced with HUD)
       this.syncLevel = 0;
       this.isFinished = false;
 
@@ -94,6 +97,19 @@ class QuantumGhost {
       const delta = 0.016;
       this.timer -= delta;
 
+      if (this.timer <= 0) {
+         if (typeof SFX !== "undefined") SFX.playFail();
+         this.isFinished = true;
+         document.getElementById("overlay").classList.add("active");
+
+         document.getElementById("modal-title").innerText = "SIGNAL LOST";
+         document.getElementById("modal-title").style.color = "#ff3b30";
+         document.getElementById("modal-msg").innerText = "Quantum coherence destabilized. Connection terminated.";
+         document.getElementById("modal-btn").innerText = "RETRY PROTOCOL";
+         document.getElementById("modal-btn").onclick = () => location.reload();
+         return;
+      }
+
       // Controls
       if (this.keys["KeyW"]) this.player.amp = Math.min(1.0, this.player.amp + 0.01);
       if (this.keys["KeyS"]) this.player.amp = Math.max(0.0, this.player.amp - 0.01);
@@ -144,13 +160,22 @@ class QuantumGhost {
       const loot = document.getElementById("loot-status");
 
       if (this.currentPhase < this.totalPhases) {
+         if (typeof SFX !== "undefined") SFX.playLevelComplete();
+
+         // Save intermediate progress
+         localStorage.setItem("m2_phase_checkpoint", this.currentPhase + 1);
+
          title.innerText = "PHASE STABILIZED";
          msg.innerText = `Quantum Layer 0${this.currentPhase} decrypted. Proceeding to deeper encryption.`;
          btn.innerText = "NEXT PHASE";
          loot.classList.remove("active");
       } else {
          this.isVictory = true;
+         if (typeof SFX !== "undefined") SFX.playMissionComplete();
+
          localStorage.setItem("m2_cleared", "true"); // Persist Mission 2 Completion
+         localStorage.removeItem("m2_phase_checkpoint"); // Clear checkpoint
+
          title.innerText = "MISSION ACCOMPLISHED";
          msg.innerText = "SILICON VALLEY QUANTUM CORE BREACHED. ALL SPECTRAL KEYS COLLECTED.";
          loot.innerText = "LOOTED: QUANTUM ENCRYPTION KEY";

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PROJECT STARFALL // ORBITAL HIJACK</title>
+    <link rel="stylesheet" href="starfall.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;400;700&family=JetBrains+Mono:wght@100;400&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div id="mission-briefing" class="active">
+        <div class="briefing-content">
+            <div class="briefing-header">INCOMING TRANSMISSION // PROJECT STARFALL</div>
+            <div class="briefing-body">
+                <p class="typewriter">AGENT, YOU ARE CLEARING THE FINAL FRONTIER.</p>
+                <p class="typewriter delay-1">THE MILITARY CONSTELLATION "STARFALL" IS IN ORBIT.</p>
+                <p class="typewriter delay-2">ALIGN 5 CONCENTRIC ORBITAL RINGS TO HIJACK THE BEAM.</p>
+                <p class="typewriter delay-3">WARNING: SOLAR FLARES WILL CAUSE MAGNETIC DRIFT.</p>
+                <div class="mission-stats">
+                    <div class="stat"><span>TARGET:</span> STARFALL SATELLITE</div>
+                    <div class="stat"><span>PROTOCOLS:</span> ORBITAL LATTICE</div>
+                    <div class="stat"><span>STAKES:</span> GLOBAL SURVEILLANCE</div>
+                </div>
+            </div>
+            <button id="accept-mission-btn">INITIALIZE ORBITAL SYNC</button>
+        </div>
+        <div class="tactical-footer">
+            DEVELOPED BY <a href="https://www.linkedin.com/in/bhargav-suthar/" target="_blank">BHARGAV SUTHAR</a> //
+            SYSTEM VERSION 4.2.0
+        </div>
+    </div>
+
+    <div id="starfall-hud">
+        <div class="hud-group">
+            <span class="label">MISSION</span>
+            <span class="value">PROJECT STARFALL</span>
+        </div>
+        <div class="hud-group">
+            <span class="label">ALIGNMENT</span>
+            <span id="sync-val" class="value">0%</span>
+        </div>
+        <div class="hud-group">
+            <span class="label">TIME LEFT</span>
+            <span id="timer-val" class="value">05:00</span>
+        </div>
+    </div>
+
+    <div id="orbital-container">
+        <canvas id="starfallCanvas"></canvas>
+        <div id="flare-warning">SOLAR FLARE DETECTED // MAGNETIC DRIFT ACTIVE</div>
+    </div>
+
+    <div id="status-display">
+        <div id="instruction">ROTATE RINGS [1-5] USING [A/D] TO ALIGN THE POWER LATTICE.</div>
+        <div id="alignment-status">LATTICE: DISCONNECTED</div>
+    </div>
+
+    <canvas id="celebration-canvas"></canvas>
+
+    <div id="overlay">
+        <div class="modal">
+            <h1 id="modal-title">SATELLITE HIJACKED</h1>
+            <p id="modal-msg">Orbital Lattice Stabilized. Global Surveillance Link established.</p>
+            <div id="loot-status"></div>
+            <button id="modal-btn">COMMAND COMPLETE</button>
+            <button onclick="window.location.href='index.html'" class="secondary">RETURN TO HUB</button>
+        </div>
+    </div>
+
+    <script src="sound.js"></script>
+    <script src="starfall.js"></script>
+</body>
+
+</html>

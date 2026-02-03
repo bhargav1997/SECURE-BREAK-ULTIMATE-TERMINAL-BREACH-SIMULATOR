@@ -15,20 +15,51 @@
    box-sizing: border-box;
 }
 
+html {
+   height: 100%;
+   overflow-y: scroll; /* Force vertical scrollbar */
+}
+
 body {
    background: var(--bg-obsidian);
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   height: 100vh;
+   min-height: 100%;
+   height: auto;
    font-family: "Outfit", sans-serif;
    color: var(--text-primary);
-   overflow: hidden;
+   position: relative;
+   display: block; /* Restore block layout */
+   padding: 40px 0;
+   overflow-x: hidden;
+}
+
+/* Global Polish: Scanlines & Vignette */
+body::before {
+   content: "";
+   position: fixed;
+   inset: 0;
+   background:
+      linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%),
+      linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+   background-size:
+      100% 4px,
+      3px 100%;
+   z-index: 10000;
+   pointer-events: none;
+   opacity: 0.15;
+}
+
+body::after {
+   content: "";
+   position: fixed;
+   inset: 0;
+   background: radial-gradient(circle, transparent 40%, rgba(0, 0, 0, 0.8) 150%);
+   pointer-events: none;
+   z-index: 9999;
 }
 
 /* Mission Briefing */
 #mission-briefing {
-   position: fixed;
+   /* position: relative; */
    inset: 0;
    background: radial-gradient(circle at center, #0f0f10 0%, #000000 100%);
    z-index: 10000;
@@ -496,4 +527,170 @@ body {
 .tactical-footer a:hover {
    text-shadow: 0 0 10px var(--accent-cyan);
    color: #fff;
+}
+
+/* Vertical Mission Path Layout */
+/* Hacker Scrollbar */
+::-webkit-scrollbar {
+   width: 6px;
+   background: #050505;
+}
+::-webkit-scrollbar-track {
+   background: #0a0a0b;
+   border-left: 1px solid #1a1a1c;
+}
+::-webkit-scrollbar-thumb {
+   background: #333;
+   border-radius: 0;
+   transition: all 0.3s ease;
+}
+::-webkit-scrollbar-thumb:hover {
+   background: var(--accent-cyan);
+   box-shadow: 0 0 15px var(--accent-cyan);
+}
+
+/* Vertical Mission Path Layout */
+.campaign-grid {
+   display: flex;
+   flex-direction: column;
+   align-items: flex-start;
+   gap: 60px;
+   position: relative;
+   padding: 40px 0 40px 80px; /* Increased lane width to 80px */
+   max-width: 800px;
+   margin: 0 auto;
+}
+
+/* Timeline Connector Line */
+.campaign-grid::before {
+   content: "";
+   position: absolute;
+   left: 40px; /* Perfectly centered in the 80px lane */
+   top: 50px;
+   bottom: 50px;
+   width: 2px;
+   background: linear-gradient(to bottom, #00f2ff 0%, rgba(0, 242, 255, 0.2) 50%, rgba(255, 180, 0, 0.2) 100%);
+   box-shadow: 0 0 15px rgba(0, 242, 255, 0.3); /* Line Glow */
+   z-index: 0;
+   transform: translateX(-50%);
+}
+
+/* Moving Data Pulse */
+.campaign-grid::after {
+   content: "";
+   position: absolute;
+   left: 40px;
+   width: 2px;
+   height: 100px;
+   background: linear-gradient(to bottom, transparent, var(--accent-cyan), transparent);
+   animation: timeline-pulse 4s infinite linear;
+   transform: translateX(-50%);
+   z-index: 1;
+}
+
+@keyframes timeline-pulse {
+   0% {
+      top: 40px;
+      opacity: 0;
+   }
+   20% {
+      opacity: 1;
+   }
+   80% {
+      opacity: 1;
+   }
+   100% {
+      top: calc(100% - 140px);
+      opacity: 0;
+   }
+}
+
+.mission-card:not(.locked) {
+   border: 1px solid rgba(0, 242, 255, 0.3);
+   animation: card-pulse 3s infinite ease-in-out;
+}
+
+@keyframes card-pulse {
+   0%,
+   100% {
+      box-shadow: 0 0 20px rgba(0, 242, 255, 0.05);
+   }
+   50% {
+      box-shadow: 0 0 40px rgba(0, 242, 255, 0.15);
+   }
+}
+
+/* Fail Glitch */
+.screen-shake {
+   animation: shake 0.4s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+
+@keyframes shake {
+   10%,
+   90% {
+      transform: translate3d(-1px, 0, 0);
+   }
+   20%,
+   80% {
+      transform: translate3d(2px, 0, 0);
+   }
+   30%,
+   50%,
+   70% {
+      transform: translate3d(-4px, 0, 0);
+   }
+   40%,
+   60% {
+      transform: translate3d(4px, 0, 0);
+   }
+}
+
+.mission-card {
+   background: rgba(10, 10, 12, 0.6);
+   border: 1px solid rgba(255, 255, 255, 0.08);
+   padding: 30px;
+   border-radius: 4px;
+   text-align: left;
+   transition: all 0.3s ease;
+   cursor: default;
+   position: relative;
+   width: 100%;
+   max-width: 700px;
+   z-index: 1;
+   backdrop-filter: blur(10px);
+}
+
+/* Timeline Node (The Glowing Orb) */
+.mission-card::after {
+   content: "";
+   position: absolute;
+   left: -42px; /* 80px padding -> left edge is 80. -40 moves it to 40 (center). */
+   top: 50%;
+   width: 12px;
+   height: 12px;
+   background: #000;
+   border: 2px solid #333;
+   border-radius: 50%;
+   transform: translate(-50%, -50%); /* Center the dot on the coordinate */
+   z-index: 2;
+   transition: all 0.5s ease;
+   box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.5); /* Outer spacing ring */
+}
+
+/* Active Node Style */
+.mission-card:not(.locked)::after {
+   border-color: var(--accent-cyan);
+   background: var(--accent-cyan);
+   box-shadow:
+      0 0 20px var(--accent-cyan),
+      0 0 40px var(--accent-cyan); /* Intense Glow */
+}
+
+/* Gold Node for Mission 3 */
+#card-m3:not(.locked)::after {
+   border-color: #ffb400;
+   background: #ffb400;
+   box-shadow:
+      0 0 20px #ffb400,
+      0 0 40px #ffb400;
 }

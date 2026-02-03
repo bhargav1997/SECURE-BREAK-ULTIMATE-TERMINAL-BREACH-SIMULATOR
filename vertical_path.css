@@ -1,0 +1,89 @@
+/* Vertical Mission Path Layout */
+.campaign-grid {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   gap: 80px;
+   position: relative;
+   padding: 40px 0;
+   max-width: 800px;
+   margin: 0 auto;
+}
+
+/* Timeline Connector Line */
+.campaign-grid::before {
+   content: "";
+   position: absolute;
+   left: 50%; /* Adjusted to be centered relative to the flex container */
+   top: 40px;
+   bottom: 40px;
+   width: 2px;
+   background: linear-gradient(to bottom, rgba(0, 242, 255, 0.5) 0%, rgba(0, 242, 255, 0.1) 50%, rgba(255, 180, 0, 0.1) 100%);
+   transform: translateX(-50%);
+   z-index: 0;
+}
+
+.mission-card {
+   background: rgba(255, 255, 255, 0.03);
+   border: 1px solid rgba(255, 255, 255, 0.1);
+   padding: 30px;
+   border-radius: 4px;
+   text-align: left;
+   transition: all 0.3s ease;
+   cursor: default;
+   position: relative;
+   width: 100%;
+   max-width: 600px;
+   z-index: 1;
+   backdrop-filter: blur(5px);
+}
+
+/* Timeline Node (Dot) - Positioned dynamically */
+.mission-card::after {
+   content: "";
+   position: absolute;
+   width: 16px;
+   height: 16px;
+   background: #111;
+   border: 2px solid var(--text-dim);
+   border-radius: 50%;
+   top: 50%;
+   transform: translateY(-50%);
+   z-index: 2;
+   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+   transition: all 0.5s ease;
+}
+
+/* Alternating Sides for Visual Interest (Optional, but let's stick to a clean center spine first) */
+/* Actually, since cards are centered on top of the line, passing through them... */
+/* Let's put the DOT on the LEFT edge of the card, and shift the card slightly right? */
+/* Better Design: The line is behind the cards. The dot is ON the line. */
+
+/* RE-DESIGN: Central Spine */
+.campaign-grid::before {
+   left: -40px; /* Move line to the left side */
+   transform: none;
+}
+
+.campaign-grid {
+   align-items: flex-start; /* Align cards to left so they sit next to line */
+   padding-left: 60px; /* Space for line */
+   gap: 60px;
+}
+
+.mission-card::after {
+   left: -50px; /* Position dot on the line */
+   right: auto;
+}
+
+/* Specific Node Colors */
+.mission-card:not(.locked)::after {
+   border-color: var(--accent-cyan);
+   background: var(--accent-cyan);
+   box-shadow: 0 0 15px var(--accent-cyan);
+}
+#card-m3:not(.locked)::after {
+   border-color: #ffb400;
+   background: #ffb400;
+   box-shadow: 0 0 15px #ffb400;
+}

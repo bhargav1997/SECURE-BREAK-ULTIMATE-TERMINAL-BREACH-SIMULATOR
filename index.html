@@ -4,7 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SECURE BREAK - ULTIMATE TERMINAL BREACH SIMULATOR</title>
+    <title>SECURE BREAK // ULTIMATE TERMINAL BREACH</title>
+    <meta name="description"
+        content="Advanced multi-layer security dismantling protocol. Infiltrate restricted networks, bypass quantum encryption, and hijack orbital lattices.">
+    <meta name="keywords" content="hacking simulator, cyberpunk game, decryption game, terminal simulator">
     <style>
         :root {
             --accent-cyan: #00f2ff;
@@ -28,72 +31,106 @@
     <div id="mission-briefing" class="active">
 
         <!-- STATE 01: CAMPAIGN HUB -->
-        <div id="campaign-hub" style="max-width: 1000px; width: 100%; display: block;">
+        <div id="campaign-hub" style="max-width: 1000px; width: 100%; display: block; margin: 0 auto;">
             <div class="briefing-header"
                 style="text-align: center; font-size: 1rem; letter-spacing: 0.6rem; margin-bottom: 60px; color: var(--accent-cyan); font-weight: 700;">
                 GLOBAL OPERATIONS // COMMAND CENTER</div>
 
-            <div id="campaign-grid"
-                style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px; margin-bottom: 60px;">
+            <div id="campaign-grid" class="campaign-grid"
+                style="display: flex; flex-direction: column; gap: 60px; margin-bottom: 60px;">
                 <!-- Mission 01 Card -->
                 <div class="mission-card" id="card-m1"
-                    style="background: rgba(0, 242, 255, 0.05); border: 2px solid var(--accent-cyan); padding: 40px; border-radius: 4px; position: relative; transition: all 0.3s ease; box-shadow: 0 0 30px rgba(0, 242, 255, 0.1);">
+                    style="background: rgba(0, 242, 255, 0.05); border: 2px solid var(--accent-cyan); padding: 30px; border-radius: 4px; position: relative; transition: all 0.3s ease; box-shadow: 0 0 30px rgba(0, 242, 255, 0.1);">
                     <div class="label" id="label-m1"
                         style="color: var(--accent-cyan); font-size: 0.75rem; letter-spacing: 0.25rem; margin-bottom: 15px; font-weight: 700;">
                         OPERATIONAL // READY</div>
                     <h2
-                        style="font-size: 1.8rem; margin-bottom: 20px; letter-spacing: 0.1rem; color: #fff; font-weight: 700;">
+                        style="font-size: 1.5rem; margin-bottom: 20px; letter-spacing: 0.1rem; color: #fff; font-weight: 700;">
                         MISSION 01: OMEGA VAULT</h2>
                     <p
-                        style="font-size: 1.1rem; color: #ccc; margin-bottom: 30px; line-height: 1.6; height: 5rem; overflow: hidden;">
+                        style="font-size: 0.95rem; color: #ccc; margin-bottom: 25px; line-height: 1.6; height: 5rem; overflow: hidden;">
                         Infiltrate the Federal Reserve. Dismantle 9 layers of multi-phase encryption to access $4.2T in
                         unmarked assets.</p>
                     <div class="mission-info"
-                        style="display: flex; gap: 30px; border-top: 1px solid rgba(0, 242, 255, 0.2); padding-top: 25px; margin-bottom: 30px;">
+                        style="display: flex; gap: 20px; border-top: 1px solid rgba(0, 242, 255, 0.2); padding-top: 20px; margin-bottom: 25px;">
                         <div class="stat"><span
-                                style="display:block; font-size: 0.75rem; color: var(--text-dim); letter-spacing: 0.15rem; margin-bottom: 8px;">STATUS:</span>
-                            <span id="status-m1" style="color: #fff; font-size: 1.2rem; font-weight: 700;">ACTIVE</span>
+                                style="display:block; font-size: 0.65rem; color: var(--text-dim); letter-spacing: 0.15rem; margin-bottom: 8px;">STATUS:</span>
+                            <span id="status-m1" style="color: #fff; font-size: 1rem; font-weight: 700;">ACTIVE</span>
                         </div>
                         <div class="stat"><span
-                                style="display:block; font-size: 0.75rem; color: var(--text-dim); letter-spacing: 0.15rem; margin-bottom: 8px;">COLLECTED:</span>
-                            <span id="result-m1" style="color: #fff; font-size: 1.2rem; font-weight: 700;">$0.00</span>
+                                style="display:block; font-size: 0.65rem; color: var(--text-dim); letter-spacing: 0.15rem; margin-bottom: 8px;">COLLECTED:</span>
+                            <span id="result-m1" style="color: #fff; font-size: 1rem; font-weight: 700;">$0.00</span>
                         </div>
                     </div>
                     <button id="open-briefing-m1"
-                        style="width: 100%; padding: 22px; background: var(--accent-cyan); color: #000; border: none; font-family: inherit; font-weight: 700; font-size: 1rem; letter-spacing: 0.3rem; cursor: pointer; text-transform: uppercase; border-radius: 2px;">INITIALIZE
+                        style="width: 100%; padding: 18px; background: var(--accent-cyan); color: #000; border: none; font-family: inherit; font-weight: 700; font-size: 0.85rem; letter-spacing: 0.25rem; cursor: pointer; text-transform: uppercase; border-radius: 2px;">INITIALIZE
                         DEPLOYMENT</button>
                 </div>
 
                 <!-- Mission 02 Card -->
                 <div class="mission-card locked" id="card-m2"
-                    style="background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.05); padding: 40px; border-radius: 4px; position: relative; opacity: 0.4; filter: grayscale(1); transition: all 0.5s ease;">
+                    style="background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.05); padding: 30px; border-radius: 4px; position: relative; opacity: 0.4; filter: grayscale(1); transition: all 0.5s ease;">
                     <div class="label" id="label-m2"
                         style="color: var(--text-dim); font-size: 0.75rem; letter-spacing: 0.25rem; margin-bottom: 15px; font-weight: 700;">
                         ENCRYPTED // LOCKED</div>
                     <h2
-                        style="font-size: 1.8rem; margin-bottom: 20px; letter-spacing: 0.1rem; color: var(--text-dim); font-weight: 700;">
+                        style="font-size: 1.5rem; margin-bottom: 20px; letter-spacing: 0.1rem; color: var(--text-dim); font-weight: 700;">
                         MISSION 02: QUANTUM GHOST</h2>
                     <p
-                        style="font-size: 1.1rem; color: var(--text-dim); margin-bottom: 30px; line-height: 1.6; height: 4.4rem; overflow: hidden;">
+                        style="font-size: 0.95rem; color: var(--text-dim); margin-bottom: 25px; line-height: 1.6; height: 5rem; overflow: hidden;">
                         Infiltrate Silicon Valley's Quantum Core. Utilize the Spectral Decoder to bypass 5-phase
                         encryption.</p>
                     <div class="mission-info"
-                        style="display: flex; gap: 30px; border-top: 1px solid rgba(255, 255, 255, 0.05); padding-top: 25px; margin-bottom: 30px;">
+                        style="display: flex; gap: 20px; border-top: 1px solid rgba(255, 255, 255, 0.05); padding-top: 20px; margin-bottom: 25px;">
                         <div class="stat"><span
-                                style="display:block; font-size: 0.75rem; color: var(--text-dim); letter-spacing: 0.15rem; margin-bottom: 8px;">STATUS:</span>
+                                style="display:block; font-size: 0.65rem; color: var(--text-dim); letter-spacing: 0.15rem; margin-bottom: 8px;">STATUS:</span>
                             <span id="status-m2"
-                                style="color: var(--text-dim); font-size: 1.2rem; font-weight: 700;">LOCKED</span>
+                                style="color: var(--text-dim); font-size: 1rem; font-weight: 700;">LOCKED</span>
                         </div>
                         <div class="stat"><span
-                                style="display:block; font-size: 0.75rem; color: var(--text-dim); letter-spacing: 0.15rem; margin-bottom: 8px;">COLLECTED:</span>
+                                style="display:block; font-size: 0.65rem; color: var(--text-dim); letter-spacing: 0.15rem; margin-bottom: 8px;">COLLECTED:</span>
                             <span id="result-m2"
-                                style="color: var(--text-dim); font-size: 1.2rem; font-weight: 700;">RESTRICTED</span>
+                                style="color: var(--text-dim); font-size: 1rem; font-weight: 700;">RESTRICTED</span>
                         </div>
                     </div>
                     <a id="link-m2" href="javascript:void(0)"
                         style="width: 100%; text-decoration: none; cursor: not-allowed; display: block;">
                         <button type="button" id="btn-m2" disabled
-                            style="width: 100%; border: 1px solid var(--text-dim); background: transparent; color: var(--text-dim); padding: 22px; font-family: inherit; font-weight: 700; font-size: 1rem; letter-spacing: 0.3rem; cursor: not-allowed; text-transform: uppercase; border-radius: 2px;">CLEARANCE
+                            style="width: 100%; border: 1px solid var(--text-dim); background: transparent; color: var(--text-dim); padding: 18px; font-family: inherit; font-weight: 700; font-size: 0.85rem; letter-spacing: 0.25rem; cursor: not-allowed; text-transform: uppercase; border-radius: 2px;">CLEARANCE
+                            REQUIRED</button>
+                    </a>
+                </div>
+
+                <!-- Mission 03 Card -->
+                <div class="mission-card locked" id="card-m3"
+                    style="background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.05); padding: 30px; border-radius: 4px; position: relative; opacity: 0.4; filter: grayscale(1); transition: all 0.5s ease;">
+                    <div class="label" id="label-m3"
+                        style="color: var(--text-dim); font-size: 0.75rem; letter-spacing: 0.25rem; margin-bottom: 15px; font-weight: 700;">
+                        ENCRYPTED // LOCKED</div>
+                    <h2
+                        style="font-size: 1.5rem; margin-bottom: 20px; letter-spacing: 0.1rem; color: var(--text-dim); font-weight: 700;">
+                        MISSION 03: PROJECT STARFALL</h2>
+                    <p
+                        style="font-size: 0.95rem; color: var(--text-dim); margin-bottom: 25px; line-height: 1.6; height: 5rem; overflow: hidden;">
+                        Hijack the orbital military constellation. Align concentric data lattices to intercept global
+                        surveillance streams.</p>
+                    <div class="mission-info"
+                        style="display: flex; gap: 20px; border-top: 1px solid rgba(255, 255, 255, 0.05); padding-top: 20px; margin-bottom: 25px;">
+                        <div class="stat"><span
+                                style="display:block; font-size: 0.65rem; color: var(--text-dim); letter-spacing: 0.15rem; margin-bottom: 8px;">STATUS:</span>
+                            <span id="status-m3"
+                                style="color: var(--text-dim); font-size: 1rem; font-weight: 700;">LOCKED</span>
+                        </div>
+                        <div class="stat"><span
+                                style="display:block; font-size: 0.65rem; color: var(--text-dim); letter-spacing: 0.15rem; margin-bottom: 8px;">SURVEILLANCE:</span>
+                            <span id="result-m3"
+                                style="color: var(--text-dim); font-size: 1rem; font-weight: 700;">RESTRICTED</span>
+                        </div>
+                    </div>
+                    <a id="link-m3" href="javascript:void(0)"
+                        style="text-decoration: none; cursor: not-allowed; display: block;">
+                        <button id="btn-m3" disabled
+                            style="width: 100%; padding: 18px; background: transparent; color: var(--text-dim); border: 1px solid var(--text-dim); font-family: inherit; font-weight: 700; font-size: 0.85rem; letter-spacing: 0.25rem; cursor: not-allowed; text-transform: uppercase; border-radius: 2px;">CLEARANCE
                             REQUIRED</button>
                     </a>
                 </div>
@@ -121,7 +158,7 @@
                 <p class="typewriter delay-1" style="font-size: 1.4rem;">WE HAVE BORED A HOLE INTO THE EXTERIOR
                     FIREWALL.</p>
                 <p class="typewriter delay-2" style="font-size: 1.4rem;">9 LAYERS OF MULTI-PHASE ENCRYPTION REMAIN.</p>
-                <p class="typewriter delay-3" style="font-size: 1.4rem;">OPERATIONAL WINDOW: <span class="highlight">600
+                <p class="typewriter delay-3" style="font-size: 1.4rem;">OPERATIONAL WINDOW: <span class="highlight">300
                         SECONDS</span>.</p>
 
                 <div class="mission-stats"
@@ -156,7 +193,7 @@
         </div>
     </div>
 
-    <div id="terminal-housing" style="visibility: hidden;">
+    <div id="terminal-housing" style="display: none;">
         <!-- Top Info HUD -->
         <div id="hud-top">
             <div class="hud-item">
@@ -209,12 +246,18 @@
         </div>
     </div>
 
+    <script src="sound.js"></script>
     <script src="game.js"></script>
     <script>
         // UI Navigation Logic
         const campaignHub = document.getElementById('campaign-hub');
         const missionIntro = document.getElementById('mission-intro-m1');
         const terminalHousing = document.getElementById('terminal-housing');
+
+        // First Interaction Audio Unlock
+        document.addEventListener('click', () => {
+            if (typeof SFX !== 'undefined') SFX.startAmbient();
+        }, { once: true });
 
         document.getElementById('open-briefing-m1').addEventListener('click', () => {
             campaignHub.style.display = 'none';
@@ -226,6 +269,22 @@
                 p.offsetHeight; // trigger reflow
                 p.style.animation = null;
             });
+
+            // Trigger typing sounds
+            if (typeof SFX !== 'undefined') {
+                paras.forEach((p, index) => {
+                    // Delay start based on css animation delay (approx 2.5s per line)
+                    const delay = index * 2500;
+                    setTimeout(() => {
+                        let clicks = 0;
+                        const interval = setInterval(() => {
+                            SFX.playTypingSound();
+                            clicks++;
+                            if (clicks > 25) clearInterval(interval); // Stop after approx line length
+                        }, 80);
+                    }, delay);
+                });
+            }
         });
 
         document.getElementById('back-to-hub').addEventListener('click', () => {
@@ -236,13 +295,14 @@
         // The game.js handles #accept-mission-btn which hides the overlay and starts game
         const originalAcceptBtn = document.getElementById('accept-mission-btn');
         originalAcceptBtn.addEventListener('click', () => {
-            terminalHousing.style.visibility = 'visible';
+            terminalHousing.style.display = 'flex';
         });
 
         // Mission Hub Progression Logic
         function syncMissionHub() {
             const m1_complete = localStorage.getItem('m1_cleared') === 'true';
             const m2_complete = localStorage.getItem('m2_cleared') === 'true';
+            const m3_complete = localStorage.getItem('m3_cleared') === 'true';
 
             if (m1_complete) {
                 // Update Mission 1 Card
@@ -293,6 +353,45 @@
                 document.getElementById('result-m2').innerText = 'QUANTUM CORE SECURED';
                 document.getElementById('result-m2').style.color = 'var(--accent-cyan)';
                 document.getElementById('label-m2').innerText = 'MISSION COMPLETE';
+
+                // Unlock Mission 3
+                const m3Card = document.getElementById('card-m3');
+                const m3Link = document.getElementById('link-m3');
+                const m3Btn = document.getElementById('btn-m3');
+                const m3Label = document.getElementById('label-m3');
+
+                m3Card.style.opacity = '1';
+                m3Card.style.filter = 'none';
+                m3Card.style.border = '2px solid #ffb400';
+                m3Card.style.background = 'rgba(255, 180, 0, 0.05)';
+                m3Card.style.boxShadow = '0 0 30px rgba(255, 180, 0, 0.1)';
+
+                m3Label.innerText = 'CLEARANCE GRANTED';
+                m3Label.style.color = '#ffb400';
+
+                document.getElementById('status-m3').innerText = 'AVAILABLE';
+                document.getElementById('status-m3').style.color = '#fff';
+                document.getElementById('result-m3').innerText = 'AWAITING SYNC';
+                document.getElementById('result-m3').style.color = '#fff';
+
+                m3Card.querySelectorAll('h2, p').forEach(el => el.style.color = el.tagName === 'H2' ? '#fff' : '#ccc');
+
+                m3Btn.disabled = false;
+                m3Btn.style.background = '#ffb400';
+                m3Btn.style.color = '#000';
+                m3Btn.style.border = 'none';
+                m3Btn.style.cursor = 'pointer';
+                m3Btn.innerText = 'INITIALIZE ORBITAL SYNC';
+                m3Link.href = 'starfall.html';
+                m3Link.style.cursor = 'pointer';
+            }
+
+            if (m3_complete) {
+                document.getElementById('status-m3').innerText = 'HIJACKED';
+                document.getElementById('status-m3').style.color = '#ffb400';
+                document.getElementById('result-m3').innerText = 'SURVEILLANCE SECURED';
+                document.getElementById('result-m3').style.color = '#ffb400';
+                document.getElementById('label-m3').innerText = 'MISSION COMPLETE';
             }
         }
 
@@ -300,6 +399,7 @@
             if (confirm('Are you sure you want to RE-LOCK all missions?')) {
                 localStorage.removeItem('m1_cleared');
                 localStorage.removeItem('m2_cleared');
+                localStorage.removeItem('m3_cleared');
                 location.reload();
             }
         });
@@ -308,7 +408,24 @@
         syncMissionHub();
         // Keep synced
         setInterval(syncMissionHub, 2000);
+
+        // Global Button Sound
+        document.addEventListener('click', (e) => {
+            if (e.target.tagName === 'BUTTON' || e.target.closest('button')) {
+                if (typeof SFX !== 'undefined') SFX.playClick();
+                // Screen shake on critical buttons
+                if (e.target.classList.contains('danger')) {
+                    document.body.classList.add('screen-shake');
+                    setTimeout(() => document.body.classList.remove('screen-shake'), 400);
+                }
+            }
+        });
     </script>
+
+    <!-- Buy Me a Coffee Widget-->
+    <script data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js"
+        data-id="bhargav1997" data-description="Support me on Buy me a coffee!" data-message="" data-color="#26B0A1"
+        data-position="Right" data-x_margin="18" data-y_margin="18" defer></script>
 </body>
 
 </html>

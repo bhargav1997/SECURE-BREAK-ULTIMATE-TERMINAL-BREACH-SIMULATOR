@@ -1,0 +1,376 @@
+:root {
+   --bg-black: #020203;
+   --starfall-gold: #ffb400;
+   --starfall-orange: #ff5e00;
+   --starfall-red: #ff3c00;
+   --text-dim: #707075;
+   --glass-bg: rgba(10, 10, 12, 0.9);
+}
+
+* {
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+}
+
+body {
+   background: var(--bg-black);
+   font-family: "Outfit", sans-serif;
+   color: #fff;
+   height: 100vh;
+   overflow: hidden;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+}
+
+/* Mission Briefing */
+#mission-briefing {
+   position: fixed;
+   inset: 0;
+   background: radial-gradient(circle at center, #1a1000 0%, #000000 100%);
+   z-index: 10000;
+   display: none;
+   justify-content: center;
+   align-items: center;
+   padding: 40px;
+}
+
+#mission-briefing.active {
+   display: flex;
+}
+
+.briefing-content {
+   max-width: 900px;
+   width: 100%;
+   padding: 60px;
+   background: rgba(0, 0, 0, 0.9);
+   border: 2px solid var(--starfall-gold);
+   box-shadow: 0 0 50px rgba(255, 180, 0, 0.1);
+   position: relative;
+}
+
+.briefing-header {
+   font-size: 1rem;
+   letter-spacing: 0.6rem;
+   color: var(--starfall-gold);
+   margin-bottom: 40px;
+   font-weight: 700;
+   text-transform: uppercase;
+}
+
+.typewriter {
+   font-size: 1.4rem;
+   font-weight: 300;
+   line-height: 1.8;
+   margin-bottom: 20px;
+   color: #ccc;
+   overflow: hidden;
+   white-space: nowrap;
+   border-right: 3px solid transparent;
+   width: 0;
+   animation: typing 2.5s steps(40, end) forwards;
+}
+
+@keyframes typing {
+   from {
+      width: 0;
+   }
+   to {
+      width: 100%;
+   }
+}
+
+.delay-1 {
+   animation-delay: 2.5s;
+}
+.delay-2 {
+   animation-delay: 5s;
+}
+.delay-3 {
+   animation-delay: 7.5s;
+}
+
+.mission-stats {
+   display: grid;
+   grid-template-columns: repeat(3, 1fr);
+   gap: 30px;
+   margin-top: 50px;
+   padding-top: 50px;
+   border-top: 1px solid rgba(255, 180, 0, 0.2);
+   opacity: 0;
+   animation: fade-in 1s ease forwards;
+   animation-delay: 10s;
+}
+
+.stat span {
+   display: block;
+   font-size: 0.85rem;
+   color: var(--text-dim);
+   margin-bottom: 8px;
+   letter-spacing: 0.2rem;
+}
+
+.stat {
+   font-weight: 700;
+   font-size: 1.2rem;
+   color: #fff;
+}
+
+#accept-mission-btn {
+   width: 100%;
+   margin-top: 40px;
+   padding: 22px;
+   background: var(--starfall-gold);
+   color: #000;
+   border: none;
+   font-family: inherit;
+   font-weight: 700;
+   font-size: 1rem;
+   letter-spacing: 0.3rem;
+   cursor: pointer;
+   text-transform: uppercase;
+   opacity: 0;
+   animation: fade-in 1s ease forwards;
+   animation-delay: 11s;
+}
+
+/* Gameplay HUD */
+#starfall-hud {
+   position: absolute;
+   top: 40px;
+   display: flex;
+   gap: 60px;
+   z-index: 100;
+}
+
+.hud-group {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+}
+
+.hud-group .label {
+   font-size: 0.7rem;
+   letter-spacing: 0.3rem;
+   color: var(--text-dim);
+   margin-bottom: 10px;
+   text-transform: uppercase;
+}
+
+.hud-group .value {
+   font-size: 1.5rem;
+   font-weight: 700;
+   color: var(--starfall-gold);
+   text-shadow: 0 0 15px rgba(255, 180, 0, 0.4);
+}
+
+/* Orbital Container */
+#orbital-container {
+   flex: 1;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   width: 100%;
+   position: relative;
+}
+
+#starfallCanvas {
+   max-width: 90vh;
+   max-height: 90vh;
+}
+
+#flare-warning {
+   position: absolute;
+   bottom: 20%;
+   background: rgba(0, 0, 0, 0.8);
+   border: 2px solid var(--starfall-red);
+   color: #fff;
+   padding: 15px 40px;
+   font-weight: 700;
+   letter-spacing: 0.15rem;
+   text-transform: uppercase;
+   display: none;
+   z-index: 200;
+   transition: all 0.3s ease;
+   box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+}
+
+@keyframes blink {
+   from {
+      opacity: 0.4;
+   }
+   to {
+      opacity: 1;
+   }
+}
+
+/* Status Display */
+#status-display {
+   position: absolute;
+   bottom: 60px;
+   text-align: center;
+   z-index: 100;
+}
+
+#instruction {
+   font-size: 0.9rem;
+   letter-spacing: 0.2rem;
+   color: var(--text-dim);
+   margin-bottom: 20px;
+}
+
+#alignment-status {
+   font-size: 1.2rem;
+   font-weight: 700;
+   color: var(--starfall-gold);
+   letter-spacing: 0.5rem;
+}
+
+/* Overlay / Modal */
+#overlay {
+   position: fixed;
+   inset: 0;
+   background: rgba(0, 0, 0, 0.85);
+   backdrop-filter: blur(10px);
+   display: none;
+   justify-content: center;
+   align-items: center;
+   z-index: 20000;
+   opacity: 0;
+   transition: opacity 0.5s ease;
+}
+
+#overlay.active {
+   display: flex;
+   opacity: 1;
+}
+
+.modal {
+   background: linear-gradient(135deg, #1a0f00 0%, #050505 100%);
+   padding: 60px;
+   border: 2px solid var(--starfall-gold);
+   text-align: center;
+   max-width: 650px;
+   width: 100%;
+   box-shadow:
+      0 0 60px rgba(255, 180, 0, 0.15),
+      inset 0 0 30px rgba(255, 180, 0, 0.05);
+   position: relative;
+   overflow: hidden;
+}
+
+/* Diagonal stripe overlay for texture */
+.modal::before {
+   content: "";
+   position: absolute;
+   top: 0;
+   left: 0;
+   right: 0;
+   bottom: 0;
+   background: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255, 180, 0, 0.03) 10px, rgba(255, 180, 0, 0.03) 20px);
+   pointer-events: none;
+}
+
+.modal h1 {
+   font-size: 3rem;
+   color: var(--starfall-gold);
+   margin-bottom: 25px;
+   text-transform: uppercase;
+   letter-spacing: 0.2rem;
+   text-shadow: 0 0 25px rgba(255, 180, 0, 0.6);
+   font-weight: 700;
+}
+
+.modal p {
+   color: #ccc;
+   margin-bottom: 45px;
+   line-height: 1.6;
+   font-size: 1.1rem;
+   text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+#loot-status {
+   margin-bottom: 40px;
+   font-size: 1.2rem;
+   font-weight: 700;
+   letter-spacing: 0.1rem;
+   text-transform: uppercase;
+   text-shadow: 0 0 15px rgba(255, 180, 0, 0.4);
+}
+
+.modal button {
+   padding: 20px 50px;
+   background: var(--starfall-gold);
+   color: #000;
+   border: none;
+   font-family: inherit;
+   font-weight: 700;
+   font-size: 1rem;
+   letter-spacing: 0.25rem;
+   cursor: pointer;
+   margin-bottom: 15px;
+   text-transform: uppercase;
+   transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+   box-shadow: 0 5px 15px rgba(255, 180, 0, 0.3);
+}
+
+.modal button:hover {
+   transform: translateY(-2px);
+   box-shadow: 0 8px 25px rgba(255, 180, 0, 0.5);
+   background: #ffc42e;
+}
+
+.modal button.secondary {
+   background: transparent;
+   color: var(--text-dim);
+   border: 1px solid rgba(112, 112, 117, 0.5);
+   box-shadow: none;
+}
+
+.modal button.secondary:hover {
+   border-color: var(--starfall-gold);
+   color: var(--starfall-gold);
+   box-shadow: 0 0 15px rgba(255, 180, 0, 0.1);
+   transform: translateY(-2px);
+}
+
+#celebration-canvas {
+   position: fixed;
+   inset: 0;
+   pointer-events: none;
+   z-index: 15000;
+}
+
+.tactical-footer {
+   position: absolute;
+   bottom: 30px;
+   left: 0;
+   right: 0;
+   text-align: center;
+   font-size: 0.7rem;
+   letter-spacing: 0.2rem;
+   color: #505055;
+   text-transform: uppercase;
+   font-weight: 400;
+   pointer-events: auto;
+}
+
+.tactical-footer a {
+   color: var(--starfall-gold);
+   text-decoration: none;
+   font-weight: 700;
+   transition: all 0.3s ease;
+   margin-left: 5px;
+}
+
+@keyframes fade-in {
+   from {
+      opacity: 0;
+      transform: translateY(10px);
+   }
+   to {
+      opacity: 1;
+      transform: translateY(0);
+   }
+}
