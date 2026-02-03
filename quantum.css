@@ -1,0 +1,383 @@
+:root {
+   --bg-black: #020203;
+   --quantum-cyan: #00f2ff;
+   --quantum-pink: #ff00ea;
+   --text-dim: #505055;
+   --glass: rgba(10, 10, 15, 0.8);
+}
+
+* {
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+}
+
+body {
+   background: var(--bg-black);
+   color: #fff;
+   font-family: "Outfit", sans-serif;
+   height: 100vh;
+   overflow: hidden;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+}
+
+#quantum-hud {
+   position: fixed;
+   top: 0;
+   left: 0;
+   right: 0;
+   padding: 30px 50px;
+   display: flex;
+   justify-content: space-between;
+   background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), transparent);
+   z-index: 10;
+}
+
+.hud-group {
+   display: flex;
+   flex-direction: column;
+}
+
+.label {
+   font-size: 0.6rem;
+   letter-spacing: 0.3rem;
+   color: var(--text-dim);
+   font-weight: 700;
+}
+
+.value {
+   font-size: 1.5rem;
+   font-weight: 200;
+   color: var(--quantum-cyan);
+   text-shadow: 0 0 10px var(--quantum-cyan);
+}
+
+#decoder-container {
+   position: relative;
+   width: 90vw;
+   height: 60vh;
+   border: 1px solid rgba(0, 242, 255, 0.1);
+   background: radial-gradient(circle at center, rgba(0, 242, 255, 0.05) 0%, transparent 70%);
+}
+
+#spectralCanvas {
+   width: 100%;
+   height: 100%;
+}
+
+#wave-controls {
+   position: absolute;
+   bottom: -100px;
+   left: 0;
+   right: 0;
+   display: grid;
+   grid-template-columns: repeat(3, 1fr);
+   gap: 30px;
+}
+
+.control-group {
+   display: flex;
+   flex-direction: column;
+   gap: 10px;
+}
+
+.control-group label {
+   font-size: 0.65rem;
+   letter-spacing: 0.1rem;
+   color: var(--text-dim);
+}
+
+.meter-track {
+   height: 4px;
+   background: rgba(255, 255, 255, 0.05);
+   border-radius: 2px;
+   overflow: hidden;
+}
+
+.meter-fill {
+   height: 100%;
+   background: var(--quantum-cyan);
+   box-shadow: 0 0 10px var(--quantum-cyan);
+   transition: width 0.1s ease;
+}
+
+#status-display {
+   margin-top: 150px;
+   text-align: center;
+}
+
+#instruction {
+   font-size: 0.8rem;
+   color: var(--text-dim);
+   letter-spacing: 0.2rem;
+   margin-bottom: 5px;
+}
+
+#breach-status {
+   font-size: 1.2rem;
+   font-weight: 700;
+   color: #fff;
+   letter-spacing: 0.5rem;
+}
+
+/* Modals */
+#overlay {
+   position: fixed;
+   inset: 0;
+   background: rgba(0, 0, 0, 0.95);
+   display: none;
+   justify-content: center;
+   align-items: center;
+   z-index: 100;
+}
+
+#overlay.active {
+   display: flex;
+}
+
+.modal {
+   background: #0a0a0b;
+   padding: 60px;
+   border: 1px solid #1a1a1c;
+   border-top: 4px solid var(--quantum-cyan);
+   text-align: center;
+   max-width: 500px;
+}
+
+.modal h1 {
+   font-size: 1.8rem;
+   color: var(--quantum-cyan);
+   margin-bottom: 20px;
+   letter-spacing: 0.2rem;
+}
+
+.modal p {
+   color: var(--text-dim);
+   margin-bottom: 40px;
+}
+
+.modal button {
+   background: var(--quantum-cyan);
+   color: #000;
+   border: none;
+   padding: 15px 40px;
+   font-weight: 700;
+   cursor: pointer;
+   font-family: inherit;
+   text-transform: uppercase;
+   letter-spacing: 0.1rem;
+   margin-bottom: 15px;
+   width: 100%;
+}
+
+.modal button.secondary {
+   background: transparent;
+   border: 1px solid #1a1a1c;
+   color: var(--text-dim);
+}
+
+.modal button:hover {
+   background: #fff;
+   color: #000;
+}
+
+/* Celebration */
+#celebration-canvas {
+   position: fixed;
+   inset: 0;
+   pointer-events: none;
+   z-index: 999;
+}
+
+#loot-status {
+   font-size: 1.2rem;
+   font-weight: 700;
+   color: var(--quantum-cyan);
+   margin-top: -10px;
+   margin-bottom: 20px;
+   text-transform: uppercase;
+   letter-spacing: 0.3rem;
+   animation: glitch-text 0.5s infinite;
+   display: none;
+}
+
+#loot-status.active {
+   display: block;
+}
+
+@keyframes glitch-text {
+   0% {
+      transform: skew(0deg);
+      opacity: 1;
+   }
+   33% {
+      transform: skew(3deg);
+      color: var(--quantum-pink);
+   }
+   66% {
+      transform: skew(-3deg);
+      color: var(--quantum-cyan);
+   }
+   100% {
+      transform: skew(0deg);
+      opacity: 0.9;
+   }
+}
+/* Mission Briefing */
+#mission-briefing {
+   position: fixed;
+   inset: 0;
+   background: var(--bg-black);
+   z-index: 1000;
+   display: none;
+   justify-content: center;
+   align-items: center;
+   padding: 40px;
+}
+
+#mission-briefing.active {
+   display: flex;
+}
+
+.briefing-content {
+   max-width: 800px;
+   width: 100%;
+}
+
+.briefing-header {
+   font-size: 0.7rem;
+   letter-spacing: 0.5rem;
+   color: var(--quantum-cyan);
+   margin-bottom: 30px;
+   font-weight: 700;
+}
+
+.briefing-body {
+   margin-bottom: 50px;
+}
+
+.typewriter {
+   font-size: 1.4rem;
+   font-weight: 300;
+   line-height: 1.8;
+   margin-bottom: 20px;
+   color: #ccc;
+   overflow: hidden;
+   white-space: nowrap;
+   border-right: 3px solid transparent;
+   width: 0;
+   animation:
+      typing 2.5s steps(40, end) forwards,
+      blink-caret 0.75s step-end 4; /* Blinks only during typing */
+}
+
+/* Sequential delays */
+.delay-0 {
+   animation-delay: 0s;
+}
+.delay-1 {
+   animation-delay: 2.5s;
+}
+.delay-2 {
+   animation-delay: 5s;
+}
+.delay-3 {
+   animation-delay: 7.5s;
+}
+
+.mission-stats {
+   display: grid;
+   grid-template-columns: repeat(3, 1fr);
+   gap: 30px;
+   margin-top: 50px;
+   padding-top: 50px;
+   border-top: 1px solid rgba(255, 255, 255, 0.1);
+   opacity: 0;
+   animation: fade-in 1s ease forwards;
+   animation-delay: 10s;
+}
+
+.stat span {
+   display: block;
+   font-size: 0.85rem;
+   color: var(--text-dim);
+   margin-bottom: 8px;
+   letter-spacing: 0.2rem;
+}
+
+#accept-mission-btn {
+   background: var(--quantum-cyan);
+   color: #000;
+   border: none;
+   padding: 15px 40px;
+   font-family: inherit;
+   font-weight: 700;
+   letter-spacing: 0.2rem;
+   cursor: pointer;
+   transition: all 0.3s ease;
+   opacity: 0;
+   animation: fade-in 1s ease forwards;
+   animation-delay: 11s;
+   text-transform: uppercase;
+}
+
+@keyframes typing {
+   from {
+      width: 0;
+   }
+   to {
+      width: 100%;
+   }
+}
+
+@keyframes blink-caret {
+   from,
+   to {
+      border-color: transparent;
+   }
+   50% {
+      border-color: var(--quantum-cyan);
+   }
+}
+
+@keyframes fade-in {
+   from {
+      opacity: 0;
+      transform: translateY(10px);
+   }
+   to {
+      opacity: 1;
+      transform: translateY(0);
+   }
+}
+
+/* Tactical Footer */
+.tactical-footer {
+   position: absolute;
+   bottom: 30px;
+   left: 0;
+   right: 0;
+   text-align: center;
+   font-size: 0.7rem;
+   letter-spacing: 0.2rem;
+   color: #505055;
+   text-transform: uppercase;
+   font-weight: 400;
+   pointer-events: auto;
+}
+
+.tactical-footer a {
+   color: var(--quantum-cyan);
+   text-decoration: none;
+   font-weight: 700;
+   transition: all 0.3s ease;
+   margin-left: 5px;
+}
+
+.tactical-footer a:hover {
+   text-shadow: 0 0 10px var(--quantum-cyan);
+   color: #fff;
+}

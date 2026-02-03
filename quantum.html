@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SPECTRAL DECODER // QUANTUM GHOST</title>
+    <link rel="stylesheet" href="quantum.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;400;700&family=JetBrains+Mono:wght@100;400&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div id="mission-briefing" class="active">
+        <div class="briefing-content">
+            <div class="briefing-header">INCOMING TRANSMISSION // ENCRYPTED GHOST</div>
+            <div class="briefing-body">
+                <p class="typewriter">AGENT, YOU ARE ENTERING THE SILICON VALLEY QUANTUM CORE.</p>
+                <p class="typewriter delay-1">THE SYSTEM USES SPECTRAL ENCRYPTION (WAVEFORM GHOSTS).</p>
+                <p class="typewriter delay-2">STABILIZE 5 QUANTUM LAYERS TO EXTRACT THE KEY.</p>
+                <p class="typewriter delay-3">WARNING: SPECTRAL DRIFT IS ACTIVE.</p>
+                <div class="mission-stats">
+                    <div class="stat"><span>TARGET:</span> QUANTUM CORE</div>
+                    <div class="stat"><span>LAYERS:</span> 5-PHASE STACK</div>
+                    <div class="stat"><span>STAKES:</span> $2.1B REVENUE</div>
+                </div>
+            </div>
+            <button id="accept-mission-btn">INITIALIZE QUANTUM SYNC</button>
+        </div>
+        <div class="tactical-footer">
+            DEVELOPED BY <a href="https://www.linkedin.com/in/bhargav-suthar/" target="_blank">BHARGAV SUTHAR</a> //
+            SYSTEM VERSION 4.2.0
+        </div>
+    </div>
+
+    <div id="quantum-hud">
+        <div class="hud-group">
+            <span class="label">MISSION</span>
+            <span class="value">QUANTUM GHOST</span>
+        </div>
+        <div class="hud-group">
+            <span class="label">PROGRESS</span>
+            <span id="phase-val" class="value">PHASE 01 / 05</span>
+        </div>
+        <div class="hud-group">
+            <span class="label">SYNC STABILITY</span>
+            <span id="sync-val" class="value">0%</span>
+        </div>
+        <div class="hud-group">
+            <span class="label">TIME</span>
+            <span id="timer-val" class="value">05:00</span>
+        </div>
+    </div>
+
+    <div id="decoder-container">
+        <canvas id="spectralCanvas"></canvas>
+
+        <div id="wave-controls">
+            <div class="control-group">
+                <label>AMPLITUDE [W/S]</label>
+                <div class="meter-track">
+                    <div id="amp-meter" class="meter-fill" style="width: 50%"></div>
+                </div>
+            </div>
+            <div class="control-group">
+                <label>FREQUENCY [A/D]</label>
+                <div class="meter-track">
+                    <div id="freq-meter" class="meter-fill" style="width: 50%"></div>
+                </div>
+            </div>
+            <div class="control-group">
+                <label>PHASE [Q/E]</label>
+                <div class="meter-track">
+                    <div id="phase-meter" class="meter-fill" style="width: 50%"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="status-display">
+        <div id="instruction">MATCH SPECTRAL SIGNATURE TO BYPASS QUANTUM ENCRYPTION.</div>
+        <div id="breach-status">INITIALIZING...</div>
+    </div>
+
+    <canvas id="celebration-canvas"></canvas>
+
+    <div id="overlay">
+        <div class="modal">
+            <h1 id="modal-title">ACCESS GRANTED</h1>
+            <p id="modal-msg">Quantum key extracted. Ready for next sequence.</p>
+            <div id="loot-status"></div>
+            <button id="modal-btn">NEXT PHASE</button>
+            <button onclick="window.location.href='index.html'" class="secondary">RETURN TO HUB</button>
+        </div>
+    </div>
+
+    <script src="quantum.js"></script>
+</body>
+
+</html>
