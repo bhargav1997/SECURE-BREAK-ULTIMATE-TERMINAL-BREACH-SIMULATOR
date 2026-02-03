@@ -426,6 +426,15 @@ class LockGame {
       document.getElementById("lock-state").innerText = "FAILURE";
       document.getElementById("dial-frame").className = "failed";
 
+      // Fetch Real IP for immersion
+      let realIP = "192.168.1.104";
+      fetch("https://api.ipify.org?format=json")
+         .then((res) => res.json())
+         .then((data) => {
+            realIP = data.ip;
+         })
+         .catch(() => {});
+
       setTimeout(() => {
          const modal = document.getElementById("overlay");
          const title = document.getElementById("modal-title");
@@ -435,7 +444,7 @@ class LockGame {
          modal.classList.add("active");
          title.innerText = "MISSION COMPROMISED";
          title.style.color = "#ff3b30";
-         msg.innerHTML = `ALARM TRIGGERED. YOUR IP: <span class="highlight" style="color:#ff3b30">192.168.1.104</span> HAS BEEN BROADCAST TO AUTHORITIES.<br><br>ACCESS TO FEDERAL RESERVE SERVERS IS PERMANENTLY BLOCKED.`;
+         msg.innerHTML = `ALARM TRIGGERED. YOUR IP: <span class="highlight" style="color:#ff3b30">${realIP}</span> HAS BEEN BROADCAST TO AUTHORITIES.<br><br>ACCESS TO FEDERAL RESERVE SERVERS IS PERMANENTLY BLOCKED.`;
          btn.innerText = "EXIT PROTOCOL";
          btn.style.background = "#ff3b30";
          btn.onclick = () => location.reload();

@@ -100,13 +100,25 @@ class QuantumGhost {
       if (this.timer <= 0) {
          if (typeof SFX !== "undefined") SFX.playFail();
          this.isFinished = true;
-         document.getElementById("overlay").classList.add("active");
 
-         document.getElementById("modal-title").innerText = "SIGNAL LOST";
-         document.getElementById("modal-title").style.color = "#ff3b30";
-         document.getElementById("modal-msg").innerText = "Quantum coherence destabilized. Connection terminated.";
-         document.getElementById("modal-btn").innerText = "RETRY PROTOCOL";
-         document.getElementById("modal-btn").onclick = () => location.reload();
+         // Fetch Real IP for immersion
+         let realIP = "192.168.1.104";
+         fetch("https://api.ipify.org?format=json")
+            .then((res) => res.json())
+            .then((data) => {
+               realIP = data.ip;
+            })
+            .catch(() => {});
+
+         setTimeout(() => {
+            document.getElementById("overlay").classList.add("active");
+            document.getElementById("modal-title").innerText = "SIGNAL LOST";
+            document.getElementById("modal-title").style.color = "#ff3b30";
+            document.getElementById("modal-msg").innerHTML =
+               `Quantum coherence destabilized. Connection terminated. YOUR IP: <span class="highlight" style="color:#ff3b30">${realIP}</span> PROBED BY NEURAL NETWORK.`;
+            document.getElementById("modal-btn").innerText = "RETRY PROTOCOL";
+            document.getElementById("modal-btn").onclick = () => location.reload();
+         }, 500);
          return;
       }
 

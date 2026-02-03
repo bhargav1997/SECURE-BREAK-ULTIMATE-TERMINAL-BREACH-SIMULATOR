@@ -424,17 +424,31 @@ class ProjectStarfall {
    fail(reason) {
       if (typeof SFX !== "undefined") SFX.playFail();
       this.isFinished = true;
-      const modal = document.getElementById("overlay");
-      const title = document.getElementById("modal-title");
-      title.innerText = "SHIELD BREACHED";
-      title.style.color = "var(--starfall-red)";
 
-      const msg = reason || "Satellite destroyed. Rings were not aligned to the Defense Drone in time.";
-      document.getElementById("modal-msg").innerText = msg;
+      // Fetch Real IP for immersion
+      let realIP = "192.168.1.104";
+      fetch("https://api.ipify.org?format=json")
+         .then((res) => res.json())
+         .then((data) => {
+            realIP = data.ip;
+         })
+         .catch(() => {});
 
-      document.getElementById("loot-status").innerText = "MISSION FAILED";
-      document.getElementById("loot-status").style.color = "var(--starfall-red)";
-      modal.classList.add("active");
+      setTimeout(() => {
+         const modal = document.getElementById("overlay");
+         const title = document.getElementById("modal-title");
+         title.innerText = "SHIELD BREACHED";
+         title.style.color = "var(--starfall-red)";
+
+         const msg =
+            (reason || "Satellite destroyed. Rings were not aligned in time.") +
+            ` YOUR IP: <span class="highlight" style="color:var(--starfall-red)">${realIP}</span> TRACED BY HIGH-ORBIT SCANNER.`;
+         document.getElementById("modal-msg").innerHTML = msg;
+
+         document.getElementById("loot-status").innerText = "MISSION FAILED";
+         document.getElementById("loot-status").style.color = "var(--starfall-red)";
+         modal.classList.add("active");
+      }, 500);
    }
 
    spawnFirework() {
