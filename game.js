@@ -421,10 +421,13 @@ class LockGame {
    }
 
    triggerExposedState() {
-      if (typeof SFX !== "undefined") SFX.playAlert(); // Continuous alarm handled in CSS/SFX? Just one trigger here.
+      if (typeof SFX !== "undefined") SFX.playAlert();
       document.body.classList.add("critical-failure", "exposed");
       document.getElementById("lock-state").innerText = "FAILURE";
       document.getElementById("dial-frame").className = "failed";
+
+      // Clear progression checkpoint on total death
+      localStorage.removeItem("m1_level_checkpoint");
 
       // Fetch Real IP for immersion
       let realIP = "192.168.1.104";

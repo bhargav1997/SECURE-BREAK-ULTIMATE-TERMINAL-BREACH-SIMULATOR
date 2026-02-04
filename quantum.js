@@ -103,6 +103,8 @@ class QuantumGhost {
 
          // Fetch Real IP for immersion
          let realIP = "192.168.1.104";
+         localStorage.removeItem("m2_phase_checkpoint");
+
          fetch("https://api.ipify.org?format=json")
             .then((res) => res.json())
             .then((data) => {
