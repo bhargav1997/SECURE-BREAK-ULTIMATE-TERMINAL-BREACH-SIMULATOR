@@ -184,6 +184,41 @@ body {
    color: #000;
 }
 
+.btn-locked {
+   background: rgba(255, 59, 48, 0.1) !important;
+   border: 1px solid #ff3b30 !important;
+   color: #ff3b30 !important;
+   cursor: not-allowed !important;
+   opacity: 1 !important;
+   animation: none !important;
+   box-shadow: inset 0 0 20px rgba(255, 59, 48, 0.1) !important;
+}
+
+.btn-return-hub {
+   margin-top: 25px;
+   width: 100%;
+   padding: 18px;
+   background: transparent;
+   border: 1px solid var(--text-dim);
+   border-left: 4px solid var(--quantum-cyan);
+   color: #fff;
+   font-family: inherit;
+   font-weight: 700;
+   font-size: 0.85rem;
+   letter-spacing: 0.3rem;
+   cursor: pointer;
+   transition: all 0.3s ease;
+   text-transform: uppercase;
+}
+
+.btn-return-hub:hover {
+   background: rgba(0, 242, 255, 0.05);
+   border-color: var(--quantum-cyan);
+   color: var(--quantum-cyan);
+   box-shadow: 0 0 30px rgba(0, 242, 255, 0.1);
+   transform: translateX(10px);
+}
+
 /* Celebration */
 #celebration-canvas {
    position: fixed;

@@ -133,19 +133,12 @@
         if (!m1Cleared) {
             acceptBtn.disabled = true;
             acceptBtn.innerText = "ACCESS DENIED // CLEAR OMEGA VAULT FIRST";
-            acceptBtn.style.background = "#333";
-            acceptBtn.style.color = "#777";
-            acceptBtn.style.cursor = "not-allowed";
-            acceptBtn.style.border = "1px solid #444";
-            acceptBtn.style.opacity = "1";
-            acceptBtn.style.animation = "none";
+            acceptBtn.classList.add('btn-locked');
 
-            // Add a return button
+            // Add premium return button
             const returnBtn = document.createElement('button');
             returnBtn.innerText = "RETURN TO COMMAND CENTER";
-            returnBtn.className = "secondary";
-            returnBtn.style.marginTop = "20px";
-            returnBtn.style.width = "100%";
+            returnBtn.className = "btn-return-hub";
             returnBtn.onclick = () => window.location.href = 'index.html';
             acceptBtn.parentNode.appendChild(returnBtn);
         }
