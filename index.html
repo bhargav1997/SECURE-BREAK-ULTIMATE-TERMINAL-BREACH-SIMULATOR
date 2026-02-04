@@ -44,6 +44,23 @@
 </head>
 
 <body>
+    <!-- Mobile Optimization Warning -->
+    <div id="mobile-warning">
+        <div class="warning-content">
+            <div class="warning-icon">⚠</div>
+            <div class="warning-header">SYSTEM ALERT: HARDWARE MISMATCH</div>
+            <div class="warning-text">
+                Shadow Breach is a high-intensity terminal simulator optimized for
+                <span class="highlight">Laptop & Desktop</span> displays.
+            </div>
+            <div class="warning-subtext">
+                Mobile experience may be degraded. For optimal decryption performance,
+                please switch to a larger terminal.
+            </div>
+            <button id="close-warning">INITIATE DESPITE RISKS</button>
+        </div>
+    </div>
+
     <h1
         style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); border: 0;">
         SHADOW BREACH // ULTIMATE TERMINAL BYPASS</h1>
@@ -441,6 +458,13 @@
                 }
             }
         });
+        // Mobile Warning Close Logic
+        const closeWarningBtn = document.getElementById('close-warning');
+        if (closeWarningBtn) {
+            closeWarningBtn.addEventListener('click', () => {
+                document.getElementById('mobile-warning').style.display = 'none';
+            });
+        }
     </script>
 
     <!-- Buy Me a Coffee Widget-->

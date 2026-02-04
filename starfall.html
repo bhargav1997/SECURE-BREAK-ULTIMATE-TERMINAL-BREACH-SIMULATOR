@@ -15,6 +15,23 @@
 </head>
 
 <body>
+    <!-- Mobile Optimization Warning -->
+    <div id="mobile-warning">
+        <div class="warning-content">
+            <div class="warning-icon">⚠</div>
+            <div class="warning-header">SYSTEM ALERT: HARDWARE MISMATCH</div>
+            <div class="warning-text">
+                Shadow Breach is a high-intensity terminal simulator optimized for
+                <span class="highlight">Laptop & Desktop</span> displays.
+            </div>
+            <div class="warning-subtext">
+                Mobile experience may be degraded. For optimal decryption performance,
+                please switch to a larger terminal.
+            </div>
+            <button id="close-warning">INITIATE DESPITE RISKS</button>
+        </div>
+    </div>
+
     <div id="mission-briefing" class="active">
         <div class="briefing-content">
             <div class="briefing-header">INCOMING TRANSMISSION // PROJECT STARFALL</div>
@@ -76,6 +93,40 @@
 
     <script src="sound.js"></script>
     <script src="starfall.js"></script>
+    <script>
+        // Mobile Warning Close Logic
+        const closeWarningBtn = document.getElementById('close-warning');
+        if (closeWarningBtn) {
+            closeWarningBtn.addEventListener('click', () => {
+                document.getElementById('mobile-warning').style.display = 'none';
+            });
+        }
+
+        // Access Control Logic
+        const acceptBtn = document.getElementById('accept-mission-btn');
+        const m1Cleared = localStorage.getItem('m1_cleared') === 'true';
+        const m2Cleared = localStorage.getItem('m2_cleared') === 'true';
+
+        if (!m1Cleared || !m2Cleared) {
+            acceptBtn.disabled = true;
+            acceptBtn.innerText = "ACCESS DENIED // PREVIOUS MISSIONS REQUIRED";
+            acceptBtn.style.background = "#333";
+            acceptBtn.style.color = "#777";
+            acceptBtn.style.cursor = "not-allowed";
+            acceptBtn.style.border = "1px solid #444";
+            acceptBtn.style.opacity = "1";
+            acceptBtn.style.animation = "none";
+
+            // Add a return button
+            const returnBtn = document.createElement('button');
+            returnBtn.innerText = "RETURN TO COMMAND CENTER";
+            returnBtn.className = "secondary";
+            returnBtn.style.marginTop = "20px";
+            returnBtn.style.width = "100%";
+            returnBtn.onclick = () => window.location.href = 'index.html';
+            acceptBtn.parentNode.appendChild(returnBtn);
+        }
+    </script>
 </body>
 
 </html>
